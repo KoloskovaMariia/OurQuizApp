@@ -7,7 +7,7 @@
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimaryDark">@color/skyBlue</item>
+        <item name="colorPrimaryDark">@color/DarkSkyBlue</item>
         <item name="colorPrimary">@color/pink</item>
         <item name="colorAccent">@color/carrotRed</item>
     </style>
