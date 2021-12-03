@@ -1,9 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!--suppress AndroidDomInspection -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="@color/skyBlue"
+
     tools:context=".QuestionsActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding = "70dp">
+
+        <TextView
+            android:id = "@+id/tv_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text = "Какой ответ, пёс?"/>
+
+        <ImageView
+            android:id="@+id/q1.jpg"
+            android:layout_width="300dp"
+            android:layout_height="108dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/q1" />
+
+        <LinearLayout
+            android:id="@+id/ll_progress_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:indeterminate="false"
+                android:max="10"
+                android:minHeight="50dp"
+                android:progress="0" />
+
+            <TextView
+                android:id="@id/+tv_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                tools:text="0/10" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id = "@+id/tv_option_one"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:padding = "10dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text = "Floppa"/>
+        <TextView
+            android:id = "@+id/tv_option_two"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:padding = "10dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text = "Poppa"/>
+        <TextView
+            android:id = "@+id/tv_option_three"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:padding = "10dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text = "Knoppa"/>
+        <TextView
+            android:id = "@+id/tv_option_four"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/default_option_border_bg"
+            android:gravity="center"
+            android:padding = "10dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text = "Siroppa"/>
+
+        <Button
+            android:id = "@+id/btn_submit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/purple_500"
+            android:text = "ОТВЕТИТЬ"
+            android:textColor = "@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+</ScrollView>
