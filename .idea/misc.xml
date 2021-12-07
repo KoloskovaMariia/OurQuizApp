@@ -5,9 +5,14 @@
       <map>
         <entry key="..\:/PROG/OurQuizApp/app/src/main/res/drawable/button.xml" value="0.17592592592592593" />
         <entry key="..\:/PROG/OurQuizApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/PROJECTS/OurQuizApp/app/src/debug/res/drawable/default_option_border_bg.xml" value="0.2328125" />
+        <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/drawable/button.xml" value="0.16354166666666667" />
+        <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/drawable/colorprogress.xml" value="0.14635416666666667" />
+        <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/drawable/selected_option_border_bg.xml" value="0.14635416666666667" />
         <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/layout/activity_question.xml" value="0.72" />
+        <entry key="..\:/PROJECTS/OurQuizApp/app/src/main/res/layout/activity_question.xml" value="0.4" />
       </map>
     </option>
   </component>
