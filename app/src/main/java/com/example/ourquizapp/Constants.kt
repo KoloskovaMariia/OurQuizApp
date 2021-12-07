@@ -5,7 +5,7 @@ object Constants{
         val questionsList = ArrayList<Question>()
         val questionOne = Question(
             1,
-            "What's name of this name?",
+            "What's name of this meme?",
             R.drawable.q1,
             "Big Floppa",
             "Pretty kitty",
@@ -35,7 +35,7 @@ object Constants{
 
         val questionFour = Question(
             4,
-            "Who was hidden?",
+            "Have you seen him? Now you have. Who are talking about?",
             R.drawable.q4,
             "Doggo",
             "Alf",

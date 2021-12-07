@@ -11,6 +11,8 @@
 
     <color name="carrotRed">#EE8750</color>
     <color name="pink">#F8B9AB</color>
+    <color name="defaultText">#A1ADC1</color>
     <color name="DarkSkyBlue">#99ACCD</color>
+    <color name="DarkerSkyBlue">#4B7ACA</color>
     <color name="green">#B6B34B</color>
 </resources>
