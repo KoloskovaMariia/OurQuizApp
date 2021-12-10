@@ -20,6 +20,8 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
     private var mQuestionList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
+    private var mCorrectAnswers: Int = 0
+    private var mUserName: String? = null
 
     private lateinit var binding: ActivityQuestionBinding
 
@@ -66,7 +68,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
+        mUserName = intent.getStringExtra(Constants.USER_NAME)
+
         mQuestionList = Constants.getQuestions()
         setQuestion()
 
