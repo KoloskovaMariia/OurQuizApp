@@ -18,41 +18,41 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
     private var mQuestionList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
-    private var mCorrectAnswers: Int = 0
     private var mUserName: String? = null
+    private var mCorrectAnswers: Int = 0
 
-    private lateinit var binding. ActivityQuestionBinding
-    fun setQuestion(){
+    private lateinit var binding: ActivityQuestionBinding
 
-        //mCurrentPosition = 1
+    private fun setQuestion(){
+
         val question = mQuestionList!![mCurrentPosition - 1]
 
         defaultOptionsView()
 
-        if(mCurrentFocus == mQuestionList!!.size){
-            btn_submit.text = "Finish"
+        if(mCurrentPosition == mQuestionList!!.size){
+            binding.btnSubmit.text = "Finish"
         } else{
-            btn_submit.text = "Submit"
+            binding.btnSubmit.text = "Submit"
         }
 
 
-        ActivityQuestionBinding.progressBar.progress = mCurrentPosition
-        ActivityQuestionBinding.progress.text = "$mCurrentPosition" + "/" + ActivityQuestionBinding.progressBar.max
+        binding.progressBar.progress = mCurrentPosition
+        binding.progress.text = "$mCurrentPosition" + "/" + binding.progressBar.max
 
-        ActivityQuestionBinding.question.text = question!!.question
-        ActivityQuestionBinding.image.setImageResource(question.image)
-        ActivityQuestionBinding.tvOptionOne.text = question.firstOption
-        ActivityQuestionBinding.tvOptionTwo.text = question.secondOption
-        ActivityQuestionBinding.tvOptionThree.text = question.thirdOption
-        ActivityQuestionBinding.tvOptionFour.text = question.fourthOption
+        binding.question.text = question!!.question
+        binding.image.setImageResource(question.image)
+        binding.tvOptionOne.text = question.firstOption
+        binding.tvOptionTwo.text = question.secondOption
+        binding.tvOptionThree.text = question.thirdOption
+        binding.tvOptionFour.text = question.fourthOption
     }
 
     private fun defaultOptionsView(){
         val options = ArrayList<TextView>()
-        options.add(0, ActivityQuestionBinding.tvOptionOne)
-        options.add(1, ActivityQuestionBinding.tvOptionTwo)
-        options.add(2, ActivityQuestionBinding.tvOptionThree)
-        options.add(3, ActivityQuestionBinding.tvOptionFour)
+        options.add(0, binding.tvOptionOne)
+        options.add(1, binding.tvOptionTwo)
+        options.add(2, binding.tvOptionThree)
+        options.add(3, binding.tvOptionFour)
 
         for (option in options){
             option.setTextColor(Color.parseColor("#A1ADC1"))
@@ -71,27 +71,27 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ActivityQuestionBinding.ActivityQuestionBinding.inflate(layoutInflater)
-        setContentView(ActivityQuestionBinding.root)
+        binding = ActivityQuestionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         mUserName = intent.getStringExtra(Constants.USER_NAME)
 
         mQuestionList = Constants.getQuestions()
         setQuestion()
 
-        ActivityQuestionBinding.tvOptionOne.setOnClickListener(this)
-        ActivityQuestionBinding.tvOptionTwo.setOnClickListener(this)
-        ActivityQuestionBinding.tvOptionThree.setOnClickListener(this)
-        ActivityQuestionBinding.tvOptionFour.setOnClickListener(this)
-        ActivityQuestionBinding.btn_submit.setOnClickListener(this)
+        binding.tvOptionOne.setOnClickListener(this)
+        binding.tvOptionTwo.setOnClickListener(this)
+        binding.tvOptionThree.setOnClickListener(this)
+        binding.tvOptionFour.setOnClickListener(this)
+        binding.btnSubmit.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.tv_option_one -> {selectedOptionView(ActivityQuestionBinding.tvOptionOne, 1)}
-            R.id.tv_option_two -> {selectedOptionView(ActivityQuestionBinding.tvOptionTwo, 2)}
-            R.id.tv_option_three -> {selectedOptionView(ActivityQuestionBinding.tvOptionThree, 3)}
-            R.id.tv_option_four -> {selectedOptionView(ActivityQuestionBinding.tvOptionFour, 4)}
+            R.id.tv_option_one -> {selectedOptionView(binding.tvOptionOne, 1)}
+            R.id.tv_option_two -> {selectedOptionView(binding.tvOptionTwo, 2)}
+            R.id.tv_option_three -> {selectedOptionView(binding.tvOptionThree, 3)}
+            R.id.tv_option_four -> {selectedOptionView(binding.tvOptionFour, 4)}
             R.id.btn_submit ->{
                 if (mSelectedOptionPosition == 0){
                     mCurrentPosition ++
@@ -109,10 +109,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
                     if (mCurrentPosition == mQuestionList!!.size){
-                        binding.btn_submit.text = "FINISH"
+                        binding.btnSubmit.text = "FINISH"
                     }
                     else{
-                        binding.btn_submit.text = "SEE NEXT QUESTION"
+                        binding.btnSubmit.text = "SEE NEXT QUESTION"
                     }
 
                 }
@@ -122,21 +122,20 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private fun answerView(answer:Int, drawableView: Int){
         when(answer){
             1 -> {
-                ActivityQuestionBinding.tv_option_one.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionOne.background = ContextCompat.getDrawable(this, drawableView)
             }
 
             2 -> {
-                ActivityQuestionBinding.tv_option_two.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionTwo.background = ContextCompat.getDrawable(this, drawableView)
             }
 
             3 -> {
-                ActivityQuestionBinding.tv_option_three.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionThree.background = ContextCompat.getDrawable(this, drawableView)
             }
 
             4 -> {
-                ActivityQuestionBinding.tv_option_four.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionFour.background = ContextCompat.getDrawable(this, drawableView)
             }
         }
-
     }
 }
