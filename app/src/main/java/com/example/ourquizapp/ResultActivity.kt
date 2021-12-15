@@ -16,5 +16,19 @@ class ResultActivity : AppCompatActivity() {
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val userName = intent.getStringExtra(Constants.USER_NAME)
+        binding.name.text = userName
+        val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
+        val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+        binding.score.text = "Your score is $correctAnswers out of $totalQuestions"
+
+        binding.exit.setOnClickListener{
+            startActivity(Intent(this, MainActivity:: class.java))
+        }
+        binding.anotherButton.setOnClickListener {
+            intent = Intent(this, ChooseActivity:: class.java)
+            intent.putExtra(Constants.USER_NAME, userName)
+            startActivity(intent)
+        }
     }
 }
