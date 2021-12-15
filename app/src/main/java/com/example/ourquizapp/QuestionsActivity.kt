@@ -1,5 +1,6 @@
 package com.example.ourquizapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +39,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding.progress.text = "$mCurrentPosition" + "/" + binding.progressBar.max
 
         binding.question.text = question.question
-        binding.image.setImageResource(question.image)
+        binding.image.setImageResource(question.imageQ)
         binding.tvOptionOne.text = question.firstOption
         binding.tvOptionTwo.text = question.secondOption
         binding.tvOptionThree.text = question.thirdOption
@@ -99,8 +100,14 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         -> {setQuestion()}
 
                         else -> {
-                            Toast.makeText(this, "You've completed a test successfully",
-                                Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, ResultActivity:: class.java)
+                            intent.putExtra(Constants.USER_NAME, mUserName)
+                            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+                            intent.putExtra(Constants.TOTAL_QUESTIONS,
+                                (mQuestionList?.size ?: throw NullPointerException
+                                    ("Expression 'mQuestionList' must not be null"))
+                            )
+                            startActivity(intent)
                         }
                     }
                 }
@@ -112,7 +119,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         != mSelectedOptionPosition){
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
                     }
-
+                    else{
+                        mCorrectAnswers++
+                    }
+                    binding.image.setImageResource(question.imageA)
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
                     if (mCurrentPosition == (mQuestionList?.size ?:
                     throw NullPointerException("Expression 'mQuestionList' must not be null"))){
@@ -130,18 +140,26 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         when(answer){
             1 -> {
                 binding.tvOptionOne.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionOne.setTextColor(Color.parseColor("#FF000000"))
+                binding.tvOptionOne.setTypeface(binding.tvOptionOne.typeface, Typeface.BOLD)
             }
 
             2 -> {
                 binding.tvOptionTwo.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionTwo.setTextColor(Color.parseColor("#FF000000"))
+                binding.tvOptionTwo.setTypeface(binding.tvOptionTwo.typeface, Typeface.BOLD)
             }
 
             3 -> {
                 binding.tvOptionThree.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionThree.setTextColor(Color.parseColor("#FF000000"))
+                binding.tvOptionThree.setTypeface(binding.tvOptionThree.typeface, Typeface.BOLD)
             }
 
             4 -> {
                 binding.tvOptionFour.background = ContextCompat.getDrawable(this, drawableView)
+                binding.tvOptionFour.setTextColor(Color.parseColor("#FF000000"))
+                binding.tvOptionFour.setTypeface(binding.tvOptionFour.typeface, Typeface.BOLD)
             }
         }
     }
