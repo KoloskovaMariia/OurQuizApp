@@ -1,16 +1,13 @@
 package com.example.ourquizapp
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.example.ourquizapp.databinding.ActivityMainBinding
 import com.example.ourquizapp.databinding.ActivityQuestionBinding
 
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
@@ -25,21 +22,22 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setQuestion(){
 
-        val question = mQuestionList!![mCurrentPosition - 1]
+        val question = (mQuestionList ?: throw NullPointerException
+            ("Expression 'mQuestionList' must not be null"))[mCurrentPosition - 1]
 
         defaultOptionsView()
 
-        if(mCurrentPosition == mQuestionList!!.size){
+        if(mCurrentPosition == (mQuestionList?.size ?:
+        throw NullPointerException("Expression 'mQuestionList' must not be null"))){
             binding.btnSubmit.text = "Finish"
         } else{
             binding.btnSubmit.text = "Submit"
         }
 
-
         binding.progressBar.progress = mCurrentPosition
         binding.progress.text = "$mCurrentPosition" + "/" + binding.progressBar.max
 
-        binding.question.text = question!!.question
+        binding.question.text = question.question
         binding.image.setImageResource(question.image)
         binding.tvOptionOne.text = question.firstOption
         binding.tvOptionTwo.text = question.secondOption
@@ -95,26 +93,35 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_submit ->{
                 if (mSelectedOptionPosition == 0){
                     mCurrentPosition ++
-                when{
-                    mCurrentPosition <= mQuestionList!!.size ->{
-                        setQuestion()
-                    } else -> {
-                        Toast.makeText(this, "You've completed a test successfully", Toast.LENGTH_SHORT).show()
+                    when{
+                        mCurrentPosition <= (mQuestionList?.size ?:
+                        throw NullPointerException("Expression 'mQuestionList' must not be null"))
+                        -> {setQuestion()}
+
+                        else -> {
+                            Toast.makeText(this, "You've completed a test successfully",
+                                Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }   }
+                }
                 else{
                     val question = mQuestionList?.get(mCurrentPosition - 1)
-                    if (question!!.correctAnswer != mSelectedOptionPosition){
+
+                    if ((question?.correctAnswer ?: throw NullPointerException
+                            ("Expression 'question' must not be null"))
+                        != mSelectedOptionPosition){
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
                     }
+
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
-                    if (mCurrentPosition == mQuestionList!!.size){
+                    if (mCurrentPosition == (mQuestionList?.size ?:
+                    throw NullPointerException("Expression 'mQuestionList' must not be null"))){
                         binding.btnSubmit.text = "FINISH"
                     }
                     else{
                         binding.btnSubmit.text = "SEE NEXT QUESTION"
                     }
-
+                    mSelectedOptionPosition = 0
                 }
             }
         }
