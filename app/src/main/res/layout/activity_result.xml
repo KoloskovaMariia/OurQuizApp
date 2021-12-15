@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/iv_trophy"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:contentDescription="image"
         android:src="@drawable/ic_trophy"/>
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:text="Good job!"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 />
@@ -72,9 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/DarkerSkyBlue"
-                android:textSize="18sp"
+                android:textSize="25sp"
                 android:text="Your score is 9 of 10"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 />
 
             <LinearLayout
@@ -82,12 +82,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 >
 
                 <Button
                     android:id="@+id/another_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
                     android:text="Choose another quiz"
@@ -98,7 +99,7 @@
                 <Button
                     android:id="@+id/exit"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Exit"
                     android:textSize="13sp"
