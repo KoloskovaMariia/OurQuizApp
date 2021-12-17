@@ -9,5 +9,5 @@
         android:color = "@color/DarkerSkyBlue"/>
     <solid android:color = "@color/white" />
 
-    <corners android:radius = "30dp"/>
+    <corners android:radius = "10dp"/>
 </shape>
