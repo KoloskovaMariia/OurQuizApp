@@ -39,7 +39,7 @@
                     />
 
                 <Button
-                    android:id="@+id/memeQuizButton"
+                    android:id="@+id/meme_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="170dp"
@@ -75,6 +75,7 @@
                     android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/geo_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="100dp"

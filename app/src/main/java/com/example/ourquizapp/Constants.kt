@@ -5,8 +5,9 @@ object Constants{
     const val USER_NAME: String = "user_name"
     const val TOTAL_QUESTIONS: String = "total_questions"
     const val CORRECT_ANSWERS: String = "correct_answers"
+    const val QUESTIONS: String = "question_set"
 
-    fun getQuestions(): ArrayList<Question>{
+    fun getMemeQuestionSet(): ArrayList<Question>{
         val questionsList = ArrayList<Question>()
         val questionOne = Question(
             1,
@@ -131,4 +132,63 @@ object Constants{
 
         return questionsList
     }
+
+    fun getGeographicalQuestionSet(): ArrayList<Question>{
+        val questionList = ArrayList<Question>()
+
+        val questionOne = Question(
+            1,
+            "Which country does this flag belong to?",
+            R.drawable.q21,
+            R.drawable.q21,
+            "Italy",
+            "Russia",
+            "Bulgaria",
+            "Mexico",
+            3)
+
+        val questionTwo = Question(
+            2,
+            "Which country does this flag belong to?",
+            R.drawable.q22,
+            R.drawable.q22,
+            "Russia",
+            "USSR",
+            "China",
+            "Belarus",
+            2)
+
+        val questionThree = Question(
+            3,
+            "Which country does this flag belong to?",
+            R.drawable.q23,
+            R.drawable.q23,
+            "UK",
+            "Australia",
+            "Argentina",
+            "USA",
+            4)
+
+        val questionFour = Question(
+            4,
+            "Which country does this flag belong to??",
+            R.drawable.q24,
+            R.drawable.q24,
+            "Jamaica",
+            "Cuba",
+            "Costa-Rico",
+            "Brasil",
+            1)
+
+        questionList.add(questionOne)
+        questionList.add(questionTwo)
+        questionList.add(questionThree)
+        questionList.add(questionFour)
+
+        return questionList
+    }
+
+
+
+
 }
