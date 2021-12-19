@@ -75,7 +75,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         mUserName = intent.getStringExtra(Constants.USER_NAME)
 
-        mQuestionList = Constants.getQuestions()
+        mQuestionList = intent.getParcelableArrayListExtra(Constants.QUESTIONS)
         setQuestion()
 
         binding.tvOptionOne.setOnClickListener(this)
@@ -108,6 +108,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                     ("Expression 'mQuestionList' must not be null"))
                             )
                             startActivity(intent)
+                            finish()
                         }
                     }
                 }
