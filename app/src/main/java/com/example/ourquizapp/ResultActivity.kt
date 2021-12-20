@@ -15,11 +15,14 @@ class ResultActivity : AppCompatActivity() {
 
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //TODO: придумать, как сделать адоптацию содержимого слоя к размеру экрана
 
         val userName = intent.getStringExtra(Constants.USER_NAME)
         binding.name.text = userName
+
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+
         binding.score.text = "Your score is $correctAnswers out of $totalQuestions"
 
         binding.exit.setOnClickListener{

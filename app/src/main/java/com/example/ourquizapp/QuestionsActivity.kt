@@ -14,22 +14,22 @@ import com.example.ourquizapp.databinding.ActivityQuestionBinding
 class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mCurrentPosition: Int = 1
-    private var mQuestionList: ArrayList<Question>? = null
+    private lateinit var mQuestionList: ArrayList<Question>
+    //TODO: переписать через lateinit все приватные поля
+
     private var mSelectedOptionPosition: Int = 0
-    private var mUserName: String? = null
+    private lateinit var mUserName: String
     private var mCorrectAnswers: Int = 0
 
     private lateinit var binding: ActivityQuestionBinding
 
     private fun setQuestion(){
 
-        val question = (mQuestionList ?: throw NullPointerException
-            ("Expression 'mQuestionList' must not be null"))[mCurrentPosition - 1]
+        val question = mQuestionList[mCurrentPosition - 1]
 
         defaultOptionsView()
 
-        if(mCurrentPosition == (mQuestionList?.size ?:
-        throw NullPointerException("Expression 'mQuestionList' must not be null"))){
+        if(mCurrentPosition == mQuestionList.size){
             binding.btnSubmit.text = "Finish"
         } else{
             binding.btnSubmit.text = "Submit"
@@ -73,9 +73,12 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mUserName = intent.getStringExtra(Constants.USER_NAME)
+        mUserName = intent.getStringExtra(Constants.USER_NAME) ?:
+        throw IllegalStateException("No user name in Intent")
 
-        mQuestionList = intent.getParcelableArrayListExtra(Constants.QUESTIONS)
+        mQuestionList = intent.getParcelableArrayListExtra(Constants.QUESTIONS) ?:
+        throw IllegalStateException("No user name in Intent")
+
         setQuestion()
 
         binding.tvOptionOne.setOnClickListener(this)
@@ -95,18 +98,13 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 if (mSelectedOptionPosition == 0){
                     mCurrentPosition ++
                     when{
-                        mCurrentPosition <= (mQuestionList?.size ?:
-                        throw NullPointerException("Expression 'mQuestionList' must not be null"))
-                        -> {setQuestion()}
+                        mCurrentPosition <= mQuestionList.size -> {setQuestion()}
 
                         else -> {
                             val intent = Intent(this, ResultActivity:: class.java)
                             intent.putExtra(Constants.USER_NAME, mUserName)
                             intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
-                            intent.putExtra(Constants.TOTAL_QUESTIONS,
-                                (mQuestionList?.size ?: throw NullPointerException
-                                    ("Expression 'mQuestionList' must not be null"))
-                            )
+                            intent.putExtra(Constants.TOTAL_QUESTIONS, (mQuestionList.size))
                             startActivity(intent)
                             finish()
                         }
@@ -115,9 +113,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 else{
                     val question = mQuestionList?.get(mCurrentPosition - 1)
 
-                    if ((question?.correctAnswer ?: throw NullPointerException
-                            ("Expression 'question' must not be null"))
-                        != mSelectedOptionPosition){
+                    if (question.correctAnswer != mSelectedOptionPosition){
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
                     }
                     else{
@@ -125,8 +121,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     binding.image.setImageResource(question.imageA)
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
-                    if (mCurrentPosition == (mQuestionList?.size ?:
-                    throw NullPointerException("Expression 'mQuestionList' must not be null"))){
+                    if (mCurrentPosition == mQuestionList.size){
                         binding.btnSubmit.text = "FINISH"
                     }
                     else{
@@ -144,7 +139,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 binding.tvOptionOne.setTextColor(Color.parseColor("#FF000000"))
                 binding.tvOptionOne.setTypeface(binding.tvOptionOne.typeface, Typeface.BOLD)
             }
-
+            //TODO: сгруппировать функцию, попробовать применить массив
             2 -> {
                 binding.tvOptionTwo.background = ContextCompat.getDrawable(this, drawableView)
                 binding.tvOptionTwo.setTextColor(Color.parseColor("#FF000000"))
